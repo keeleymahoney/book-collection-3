@@ -1,0 +1,37 @@
+<%= link_to("Back to Home", books_path, :class => 'back-link')%>
+
+<h1>Add New Book</h1>
+
+<% if flash[:alert] %>
+  <div style="color: red;">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<div>
+    <%=form_for(@book, data: { turbo: false }) do |f| %>
+        <table>
+            <tr>
+                <th>Book Title<th>
+                <td><%=f.text_field(:title) %></td>
+            </tr>
+            <tr>
+                <th>Author<th>
+                <td><%=f.text_field(:author) %></td>
+            </tr>
+            <tr>
+                <th>Price<th>
+                <td><%=f.text_field(:price) %></td>
+            </tr>
+            <tr>
+                <th>Date</tr>
+                <td>
+                    <%= f.date_select(:date, include_blank: [true, true, true]) %></td>
+                </td>
+            </tr>
+        </table>
+        <div class="form-buttons">
+            <%= f.submit("Create Book") %>
+        </div>
+    <% end %>
+</div>
